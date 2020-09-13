@@ -919,14 +919,14 @@ SELECT|sys.sys_config:null
       <DataType>varchar(50)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="287" parent="284" name="lastName">
+    <column id="287" parent="284" name="last_name">
       <Position>3</Position>
       <DataType>varchar(50)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="288" parent="284" name="age">
       <Position>4</Position>
-      <DataType>smallint|0s</DataType>
+      <DataType>tinyint|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <key id="289" parent="284" name="PRIMARY">
