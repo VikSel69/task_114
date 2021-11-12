@@ -13,20 +13,21 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 public class Util {
+    private static final String hostName = "localhost";
+    private static final String dbName = "bdusers";
+    private static final String userName = "root";
+    private static final String password = "root";
+
     private static SessionFactory sessionFactory;
 
-    public static Connection getMySQLConnection() throws SQLException {
-        String hostName = "localhost";
-        String dbName = "testbd";
-        String userName = "root";
-        String password = "root";
-        return getMySQLConnection(hostName, dbName, userName, password);
-    }
-    private static Connection getMySQLConnection(String hostName, String dbName, String userName, String password)
-            throws SQLException {
-        String conUrl = "jdbc:mysql://" + hostName + ":3306/" + dbName +
+    private static Connection MySQLConnection() throws SQLException {
+        String connectUrl = "jdbc:mysql://" + hostName + ":3306/" + dbName +
                 "?verifyServerCertificate=false&useSSL=false&requireSSL=false&serverTimezone=UTC";
-        return DriverManager.getConnection(conUrl, userName, password);
+            return DriverManager.getConnection(connectUrl, userName, password);
+    }
+
+    public static Connection getMySQLConnection() throws SQLException {
+        return MySQLConnection();
     }
 
     public static SessionFactory getSessionFactory() {
@@ -35,7 +36,7 @@ public class Util {
                 Configuration configuration = new Configuration();
                 Properties settings = new Properties();
                 settings.put(Environment.DIALECT, "org.hibernate.dialect.MySQL5Dialect");
-                settings.put(Environment.URL, "jdbc:mysql://localhost:3306/testbd" +
+                settings.put(Environment.URL, "jdbc:mysql://localhost:3306/bdusers" +
                         "?useSSL=false&useUnicode=true&serverTimezone=UTC");
                 settings.put(Environment.DRIVER, "com.mysql.jdbc.Driver");
                 settings.put(Environment.USER, "root");
@@ -43,7 +44,6 @@ public class Util {
                 settings.put(Environment.SHOW_SQL, "true");
                 settings.put(Environment.HBM2DDL_AUTO, "update");
                 configuration.setProperties(settings);
-
                 configuration.addAnnotatedClass(User.class);
                 ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
                         .applySettings(configuration.getProperties()).build();

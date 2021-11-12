@@ -10,13 +10,13 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name")
+    @Column
     private String name;
 
     @Column(name = "last_name")
     private String lastName;
 
-    @Column(name = "age")
+    @Column
     private Byte age;
 
     public User() {
@@ -66,11 +66,11 @@ public class User {
     }
     @Override
     public String toString() {
-        return "User{" +
+        return "\nUser{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", age=" + age +
-                '}';
+                ", name='" + name +
+                "', lastName='" + lastName +
+                "', age=" + age +
+                "}";
     }
 }
